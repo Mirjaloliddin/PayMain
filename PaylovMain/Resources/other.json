@@ -1,0 +1,33 @@
+
+[
+    {
+        "otherIcon":"safety",
+        "otherTitle":"Safety"
+    },
+    {
+        "otherIcon":"settingsO",
+        "otherTitle":"Settings"
+    },
+    {
+        "otherIcon":"support",
+        "otherTitle":"Support service"
+    },
+    {
+        "otherIcon":"app",
+        "otherTitle":"About app",
+        "titlecha":"v.2"
+    },
+    {
+        "otherIcon":"terms",
+        "otherTitle":"Terms of use"
+    },
+    {
+        "otherIcon":"privacy",
+        "otherTitle":"Privacy policy"
+    },
+    {
+        "otherIcon":"F.A.Q",
+        "otherTitle":"F.A.Q"
+    },
+    
+]

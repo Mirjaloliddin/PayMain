@@ -1,0 +1,47 @@
+[
+    {
+        "serviceImage":"earth",
+        "serviceTitle":"Money transfers"
+        
+    },
+    {
+        "serviceImage":"file-invoice",
+        "serviceTitle":"Auto payments"
+        
+    },
+    {
+        "serviceImage":"alert-triangle",
+        "serviceTitle":"Monitoring"
+        
+    },
+    {
+        "serviceImage":"assisant",
+        "serviceTitle":"Money transfers"
+        
+    },
+    {
+        "serviceImage":"monitor",
+        "serviceTitle":"Monitoring"
+        
+    },
+    {
+        "serviceImage":"karm-on",
+        "serviceTitle":"Money transfers"
+        
+    },
+    {
+        "serviceImage":"earth",
+        "serviceTitle":"Money transfers"
+        
+    },
+    {
+        "serviceImage":"assisant",
+        "serviceTitle":"Money transfers"
+    
+    },
+    {
+        "serviceImage":"earth",
+        "serviceTitle":"Money transfers"
+        
+    }
+]
