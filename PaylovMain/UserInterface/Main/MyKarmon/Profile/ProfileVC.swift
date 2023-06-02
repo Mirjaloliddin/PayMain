@@ -30,7 +30,14 @@ class ProfileVC: UIViewController {
         title.font = UIFont(name: "Rubik-Medium", size: 16)
         return title
     }()
-    
+    private let proffiletitle: UILabel = {
+        let title = UILabel()
+        title.text = "Profile"
+        title.textColor = UIColor(named: "334055")
+        title.textAlignment = .center
+        title.font = UIFont(name: "Rubik-Medium", size: 16)
+        return title
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
