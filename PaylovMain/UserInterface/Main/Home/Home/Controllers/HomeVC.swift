@@ -23,6 +23,19 @@ class HomeVC: UIViewController {
     
     // MARK: - Closures for our UI
     
+    private let logo: UIImageView = {
+       let view = UIImageView()
+        view.image = UIImage(named: "logo")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+   private let notif: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "Notifications"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -107,11 +120,24 @@ class HomeVC: UIViewController {
         lbl.font = UIFont(name: "Rubik-Regular", size: 14)
         return lbl
     }()
+    let rightShadow: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "F7F8FC")
+        view.layer.cornerRadius = 50
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor(named: "fa8231_single")?.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = CGSize(width: 1, height: 1)
+        view.layer.shadowRadius = 90
+        return view
+    }()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "F7F8FC")
         
+        navigationsConstraints()
         scrollViewConstraint()
         topContainerViewConstraints()
         addCardConstraint()
@@ -150,13 +176,36 @@ class HomeVC: UIViewController {
             
     }
 
+    
+    // MARK: -navigations
+    func navigationsConstraints(){
+        view.addSubview(logo)
+        view.addSubview(notif)
+        view.addSubview(rightShadow)
+        
+        logo.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(64)
+            make.left.equalTo(20)
+            
+        }
+        notif.snp.makeConstraints { make in
+            make.top.equalTo(logo)
+            make.right.equalTo(-20)
+        }
+        rightShadow.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-20)
+            make.right.equalToSuperview().offset(80)
+            make.width.height.equalTo(80)
+        }
+    }
     // MARK: - scroll
     func scrollViewConstraint(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(logo.snp.bottom).offset(10)
+            make.left.right.bottom.equalToSuperview()
 
         }
         
@@ -177,7 +226,7 @@ class HomeVC: UIViewController {
         contentView.addSubview(myCollectionView)
     
         myCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(topContainerView.card.snp.bottom).offset(14)
+            make.top.equalTo(amountView.snp.bottom).offset(16)
             make.left.equalTo(0)
             make.height.equalTo(78)
             make.width.equalTo(100)
@@ -207,7 +256,7 @@ class HomeVC: UIViewController {
         bottomContainerView.monitoringBtn.addTarget(self, action: #selector(enableMonitoringClicked), for: .touchUpInside)
         
         bottomContainerView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.top).offset(335)
+            make.top.equalTo(topContainerView.dollarView.snp.bottom).offset(21)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(contentView.snp.bottom).offset(50)
         }
@@ -225,7 +274,7 @@ class HomeVC: UIViewController {
         amountEye.addTarget(self, action: #selector(eyeClicked), for: .touchUpInside)
         amountOffEye.addTarget(self, action: #selector(eyeOffClicked), for: .touchUpInside)
         amountView.snp.makeConstraints { make in
-            make.top.equalTo(110)
+            make.top.equalTo(contentView.snp.top).offset(6)
             make.left.right.equalTo(0)
             make.height.equalTo(58)
         }

@@ -10,18 +10,7 @@ import SnapKit
 
 class HomeModel: UIView {
     
-    let logo: UIImageView = {
-       let view = UIImageView()
-        view.image = UIImage(named: "logo")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    let notif: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named: "Notifications"), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        return btn
-    }()
+ 
     
     let card: UIView = {
         let card = UIView()
@@ -143,26 +132,26 @@ class HomeModel: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        logoContsraints()
+//        logoContsraints()
         cardConstraints()
         valyutaKursViewConstraint()
         shadowConstraints()
         
         
     }
-    func logoContsraints(){
-        self.addSubview(logo)
-        self.addSubview(notif)
-     
-        logo.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
-        }
-        notif.snp.makeConstraints { make in
-            make.top.equalTo(logo)
-            make.right.equalToSuperview().offset(-20)
-        }
-    }
+//    func logoContsraints(){
+//        self.addSubview(logo)
+//        self.addSubview(notif)
+//     
+//        logo.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.left.equalToSuperview().offset(20)
+//        }
+//        notif.snp.makeConstraints { make in
+//            make.top.equalTo(logo)
+//            make.right.equalToSuperview().offset(-20)
+//        }
+//    }
     
     func cardConstraints(){
         self.addSubview(card)
@@ -171,9 +160,9 @@ class HomeModel: UIView {
         inCardView.addSubview(plus)
         
         card.snp.makeConstraints { make in
-            make.top.equalTo(logo.snp.bottom).offset(16)
-            make.left.equalTo(logo)
-            make.right.equalTo(notif)
+            make.top.equalToSuperview()
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
             make.height.equalTo(58)
         }
         inCardView.snp.makeConstraints { make in
@@ -203,10 +192,10 @@ class HomeModel: UIView {
         dollarView.addSubview(valueSale)
         
         dollarView.snp.makeConstraints { make in
-            make.top.equalTo(card.snp.bottom).offset(106)
-            make.left.equalTo(logo)
+            make.top.equalToSuperview().offset(106)
+            make.left.equalTo(20)
             make.height.equalTo(40)
-            make.right.equalTo(notif)
+            make.right.equalTo(-20)
             
         }
         usaImg.snp.makeConstraints { make in

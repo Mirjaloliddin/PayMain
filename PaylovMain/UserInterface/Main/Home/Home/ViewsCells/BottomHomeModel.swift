@@ -630,6 +630,7 @@ class BottomHomeModel: UIView {
         oplataTitle.snp.makeConstraints { make in
             make.top.equalTo(monitoringView.snp.bottom).offset(24)
             make.left.equalTo(addCardView)
+            make.height.equalTo(23)
         }
         locIcon.snp.makeConstraints { make in
             make.top.left.equalTo(12)

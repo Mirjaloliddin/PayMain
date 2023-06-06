@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, UITextFieldDelegate {
+    
+    var containerView = ProfileContentView()
     
     private let backBtn: UIButton = {
         let btn = UIButton()
@@ -41,8 +43,12 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "F7F7F7")
+        view.backgroundColor = UIColor(named: "EBEFF5")
+        
         navigationConstraints()
+        containerConstraints()
+        actionsContainer()
+        
         backBtn.addTarget(self, action: #selector(backClicked), for: .touchUpInside)
         
     }
@@ -79,11 +85,59 @@ class ProfileVC: UIViewController {
             make.right.equalTo(-20)
             make.width.height.equalTo(24)
         }
-        
+     
     }
+    func containerConstraints(){
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(profiletitle.snp.bottom).offset(87)
+            make.left.right.bottom.equalToSuperview()
+        }
+        containerView.birthTF.delegate = self
+    }
+    
+    func actionsContainer(){
+        containerView.maleBtn.addTarget(self, action: #selector(maleBtnClicked), for: .touchUpInside)
+        containerView.femaleBtn.addTarget(self, action: #selector(femaleBtnClicked), for: .touchUpInside)
+        containerView.birthBtn.addTarget(self, action: #selector(birthBtnClicked), for: .touchUpInside)
+    }
+    
+    @objc func maleBtnClicked(_ sender: UIButton){
+        containerView.maleView.layer.borderColor = UIColor(named: "1B9684_single")?.cgColor
+        containerView.femaleView.layer.borderColor = UIColor(named: "F7F7F7")?.cgColor
+        containerView.maleIsSelect.isHidden = true
+        containerView.maleSelected.isHidden = false
+        containerView.femaleIsSelect.isHidden = false
+        containerView.femaleSelected.isHidden = true
+    }
+    @objc func femaleBtnClicked(_ sender: UIButton){
+        containerView.femaleView.layer.borderColor = UIColor(named: "1B9684_single")?.cgColor
+        containerView.maleView.layer.borderColor = UIColor(named: "F7F7F7")?.cgColor
+        containerView.femaleIsSelect.isHidden = true
+        containerView.femaleSelected.isHidden = false
+        containerView.maleIsSelect.isHidden = false
+        containerView.maleSelected.isHidden = true
+    }
+    @objc func birthBtnClicked(_ sender: UIButton){
+   
+    }
+    
     @objc func backClicked(_ sender: UIButton){
         navigationController?.popViewController(animated: true)
         print("fdfe")
     }
+    @objc func actionBirthTF(_ field: UITextField){
+        
+        if let text = containerView.birthTF.text, text.count > 8 {
+            containerView.birthTF.deleteBackward()
+             }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
 
 }
+
